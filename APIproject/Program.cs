@@ -1,13 +1,19 @@
 using System.Data.Common;
+using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var DbConnectionString = "sidufhsiudfh";
 
 // Add services to the container.
 builder.Services.AddAuthorization();
 builder.Services
-    .AddIdentityApiEndpoints<IdentityUser>;
-    .AddDapperStores(options => { options.ConnectionString = DbConnectionString;
+    .AddIdentityApiEndpoints<IdentityUser>()
+    .AddDapperStores(options => { options.ConnectionString = DbConnectionString; });
+builder.Services
     .AddIdentityApiEndpoints<IdentityUser>(options =>
      {
          options.User.RequireUniqueEmail = true;
