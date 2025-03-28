@@ -4,16 +4,16 @@ namespace LU2_project.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class SmarthealthController : ControllerBase
 {
     /*private static readonly string[] Summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };*/
 
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<SmarthealthController> _logger;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public SmarthealthController(ILogger<SmarthealthController> logger)
     {
         _logger = logger;
     }
