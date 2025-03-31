@@ -14,7 +14,7 @@ builder.Services
     .AddIdentityApiEndpoints<IdentityUser>(options =>
     {
         options.User.RequireUniqueEmail = true;
-        options.SignIn.RequireConfirmedPhoneNumber = true;
+        options.SignIn.RequireConfirmedPhoneNumber = false;
 
         options.Password.RequireDigit = false;
         options.Password.RequireLowercase = true;
