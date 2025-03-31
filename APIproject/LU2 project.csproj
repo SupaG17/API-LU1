@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>LU2_project</RootNamespace>
+    <UserSecretsId>352c2312-d842-46a9-9325-2ec406c62af0</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
