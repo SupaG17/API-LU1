@@ -3,11 +3,10 @@ namespace LU2_project;
 public class WeatherForecast
 {
     /*public DateOnly Date { get; set; }*/
-    public Guid Guid { get; set; }
-
     public string UserEmail { get; set; }
 
     public string PassWord { get; set; }
+    public Guid UserGuid { get; internal set; }
 
     //public int TemperatureC { get; set; }
 

@@ -24,8 +24,10 @@ public class SmarthealthController : ControllerBase
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             /*Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),*/
+            UserGuid = Guid.NewGuid(),
             UserEmail = "tesemail@email.com",
-            TemperatureC = Random.Shared.Next(-20, 55),
+            PassWord = "randompassword",
+            //TemperatureC = Random.Shared.Next(-20, 55),
             /*Summary = Summaries[Random.Shared.Next(Summaries.Length)]*/
         })
         .ToArray();
