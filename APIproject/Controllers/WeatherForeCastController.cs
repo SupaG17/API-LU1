@@ -1,3 +1,4 @@
+using LU2_project.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LU2_project.Controllers;

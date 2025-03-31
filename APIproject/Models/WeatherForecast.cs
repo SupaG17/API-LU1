@@ -1,4 +1,4 @@
-namespace LU2_project;
+namespace LU2_project.Models;
 
 public class WeatherForecast
 {

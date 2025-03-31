@@ -10,7 +10,7 @@ var sqlConnectionString = builder.Configuration["SqlConnectionString"];
 if (string.IsNullOrWhiteSpace(sqlConnectionString))
     throw new InvalidProgramException("Configuration variable SqlConnectionString not found");
 
-var DbConnectionString = "Server=tcp:avansict2229187.database.windows.net,1433;Initial Catalog=db2229187;Persist Security Info=False;User ID=SupaGmin;Password={Ado-170306};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
+//var DbConnectionString = "Server=tcp:avansict2229187.database.windows.net,1433;Initial Catalog=db2229187;Persist Security Info=False;User ID=SupaGmin;Password={Ado-170306};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
 
 // Add services to the container.
 builder.Services.AddAuthorization();
@@ -24,7 +24,7 @@ builder.Services
         options.Password.RequireLowercase = true;
         options.Password.RequireUppercase = true;
     })
-    .AddDapperStores(options => { options.ConnectionString = DbConnectionString; });
+    .AddDapperStores(options => { options.ConnectionString = sqlConnectionString; });
 
 builder.Services
     .AddOptions<BearerTokenOptions>(IdentityConstants.BearerScheme)

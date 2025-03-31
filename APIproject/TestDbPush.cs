@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-string connectionString ="Server=tcp:avansict2229187.database.windows.net,1433;Initial Catalog=db2229187;Persist Security Info=False;User ID=SupaGmin;Password=Ado-170306;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;";
+//string connectionString ="Server=tcp:avansict2229187.database.windows.net,1433;Initial Catalog=db2229187;Persist Security Info=False;User ID=SupaGmin;Password=Ado-170306;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;";
 
 using(var connection = new SqlConnection(SqlConnectionString)){
     connection.Open();
