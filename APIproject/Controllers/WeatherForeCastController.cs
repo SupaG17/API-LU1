@@ -7,11 +7,6 @@ namespace LU2_project.Controllers;
 [Route("[controller]")]
 public class SmarthealthController : ControllerBase
 {
-    /*private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };*/
-
     private readonly ILogger<SmarthealthController> _logger;
 
     public SmarthealthController(ILogger<SmarthealthController> logger)
@@ -20,16 +15,14 @@ public class SmarthealthController : ControllerBase
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public IEnumerable<UserInfo> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        return Enumerable.Range(1, 5).Select(index => new UserInfo
         {
-            /*Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),*/
-            UserGuid = Guid.NewGuid(),
-            UserEmail = "tesemail@email.com",
+            UserName = "tesemail@email.com",
             PassWord = "randompassword",
-            //TemperatureC = Random.Shared.Next(-20, 55),
-            /*Summary = Summaries[Random.Shared.Next(Summaries.Length)]*/
+            CurrentLevel = 0,
+            Id = Guid.NewGuid(),
         })
         .ToArray();
     }
