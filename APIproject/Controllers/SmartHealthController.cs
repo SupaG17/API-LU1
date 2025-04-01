@@ -5,16 +5,16 @@ namespace LU2_project.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class SmarthealthController : ControllerBase
+public class SmartHealthController : ControllerBase
 {
-    private readonly ILogger<SmarthealthController> _logger;
+    private readonly ILogger<SmartHealthController> _logger;
 
-    public SmarthealthController(ILogger<SmarthealthController> logger)
+    public SmartHealthController(ILogger<SmartHealthController> logger)
     {
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
+    [HttpGet(Name = "GetUserInfo")]
     public IEnumerable<UserInfo> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new UserInfo
