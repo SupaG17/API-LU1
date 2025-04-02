@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LU2 project", "APIproject\LU2 project.csproj", "{A4361CE3-51D6-4084-9E1E-585679F23F70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LU1 project", "APIproject\LU1 project.csproj", "{A4361CE3-51D6-4084-9E1E-585679F23F70}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F955D401-10FC-4AAF-A4EC-C7F2DBBAAA0E}"
 EndProject
