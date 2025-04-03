@@ -28,6 +28,11 @@ namespace LU1_project.Repositories
             var query = "SELECT * FROM [dbo].[User] WHERE Id = @Id";
             return await _dbConnection.QuerySingleOrDefaultAsync<UserInfo>(query, new { Id = id });
         }
+        public async Task<UserInfo?> ReadAsync(string userName)
+        {
+            var query = "SELECT * FROM [dbo].[User] WHERE Username = @UserName";
+            return await _dbConnection.QuerySingleOrDefaultAsync<UserInfo>(query, new { Username = userName });
+        }
 
         public async Task<IEnumerable<UserInfo>> ReadAllAsync()
         {

@@ -4,10 +4,9 @@ using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using LU1_project.Repositories;
-using LU1_project.Models;
-using LU1_project.UserUpdateService;
+using LU1_project.Repositories; 
 using LU1_project.Interfaces;
+using LU1_project.UserUpdateService;
 
 var builder = WebApplication.CreateBuilder(args);
 
