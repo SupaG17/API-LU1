@@ -17,7 +17,7 @@ namespace LU2_project.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                var userId = await sqlConnection.ExecuteAsync("INSERT INTO [dbo].[UserLU1] (UserName, PassWord, CurrentLevel, Id) values(@UserName, @PassWord, @CurrentLevel, @Id)", userInfo);
+                var userId = await sqlConnection.ExecuteAsync("INSERT INTO [dbo].[User] (UserName, PassWord, CurrentLevel, Avatar, Id) values(@UserName, @PassWord, @CurrentLevel, @Avatar, @Id)", userInfo);
                 return userInfo;
             }
         }
@@ -27,7 +27,7 @@ namespace LU2_project.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                return await sqlConnection.QuerySingleOrDefaultAsync<UserInfo>("SELECT * FROM [dbo].[UserLU1] WHERE Id = @Id", new { id });
+                return await sqlConnection.QuerySingleOrDefaultAsync<UserInfo>("SELECT * FROM [dbo].[User] WHERE Id = @Id", new { id });
             }
         }
 
@@ -35,7 +35,7 @@ namespace LU2_project.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                return await sqlConnection.QueryAsync<UserInfo>("SELECT * FROM [dbo].[UserLU1]");
+                return await sqlConnection.QueryAsync<UserInfo>("SELECT * FROM [dbo].[User]");
             }
         }
 
@@ -43,8 +43,8 @@ namespace LU2_project.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("UPDATE [dbo].[UserLU1] SET " +
-                                                 "CurrentLevel = @CurrentLevel"
+                await sqlConnection.ExecuteAsync("UPDATE [dbo].[User] SET " +
+                                                 "CurrentLevel = @CurrentLevel, Avatar = @Avatar"
                                                  , userInfo);
 
             }
@@ -54,9 +54,9 @@ namespace LU2_project.Repositories
         {
             using (var sqlConnection = new SqlConnection(sqlConnectionString))
             {
-                await sqlConnection.ExecuteAsync("DELETE FROM [dbo].[UserLU1] WHERE Id = @Id", new { id });
+                await sqlConnection.ExecuteAsync("DELETE FROM [dbo].[User] WHERE Id = @Id", new { id });
             }
         }
-
+        
     }
 }
