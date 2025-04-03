@@ -21,6 +21,7 @@ namespace LU1_project.Repositories
                 return userInfo;
             }
         }
+        
 
         public async Task<UserInfo?> ReadAsync(Guid id)
         {
