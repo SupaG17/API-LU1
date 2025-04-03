@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using LU1_project.Repositories;
+using LU2_project.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +26,9 @@ builder.Services
         options.Password.RequireUppercase = true;
     })
     .AddDapperStores(options => { options.ConnectionString = sqlConnectionString; });
+SqlRepository sqlRepository = new SqlRepository(sqlConnectionString);
+UserInfo userInfo = new("SimonTest", "Test123", 2, 2);
+await sqlRepository.InsertAsync(userInfo);
 
 builder.Services
     .AddOptions<BearerTokenOptions>(IdentityConstants.BearerScheme)
@@ -67,3 +73,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

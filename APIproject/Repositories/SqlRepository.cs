@@ -2,7 +2,7 @@
 using LU2_project.Models;
 using Microsoft.Data.SqlClient;
 
-namespace LU2_project.Repositories
+namespace LU1_project.Repositories
 {
     public class SqlRepository
     {

@@ -18,12 +18,14 @@ public class SmartHealthController : ControllerBase
     public IEnumerable<UserInfo> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new UserInfo
-        {
-            UserName = "tesemail@email.com",
-            PassWord = "randompassword",
-            CurrentLevel = 0,
-            Id = Guid.NewGuid(),
-        })
+        (
+            "tesemail@email.com", //UserName
+            "randompassword", //PassWord
+            3, //CurrentLevel
+            2 //Avatar
+        )
+            
+        )
         .ToArray();
     }
 }
