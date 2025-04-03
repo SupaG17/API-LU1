@@ -1,4 +1,4 @@
-namespace LU2_project.Models;
+namespace LU1_project.Models;
 
 public class UserInfo
 {

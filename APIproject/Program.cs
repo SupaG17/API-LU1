@@ -1,19 +1,27 @@
-using System.Data.Common;
+using System.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using LU1_project.Repositories;
-using LU2_project.Models;
-
+using LU1_project.Models;
+using LU1_project.UserUpdateService;
+using LU1_project.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Get Connection String from Configuration
 var sqlConnectionString = builder.Configuration["SqlConnectionString"];
 if (string.IsNullOrWhiteSpace(sqlConnectionString))
     throw new InvalidProgramException("Configuration variable SqlConnectionString not found");
 
-// Add services to the container.
+// ? Register IDbConnection (Fixes Dependency Injection issue)
+builder.Services.AddScoped<IDbConnection>(sp => new SqlConnection(sqlConnectionString));
+builder.Services.AddScoped<ISqlRepository, SqlRepository>();
+builder.Services.AddScoped<UserUpdateService>();
+
+// Add Authorization & Identity
 builder.Services.AddAuthorization();
 builder.Services
     .AddIdentityApiEndpoints<IdentityUser>(options =>
@@ -26,9 +34,6 @@ builder.Services
         options.Password.RequireUppercase = true;
     })
     .AddDapperStores(options => { options.ConnectionString = sqlConnectionString; });
-SqlRepository sqlRepository = new SqlRepository(sqlConnectionString);
-UserInfo userInfo = new("SimonTest", "Test123", 2, 2);
-await sqlRepository.InsertAsync(userInfo);
 
 builder.Services
     .AddOptions<BearerTokenOptions>(IdentityConstants.BearerScheme)
@@ -38,8 +43,7 @@ builder.Services
     });
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(); // OpenAPI Documentation
 
 var app = builder.Build();
 app.UseAuthorization();
@@ -60,17 +64,13 @@ app.MapPost("/account/logout",
 
 app.MapControllers().RequireAuthorization();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
-
