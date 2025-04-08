@@ -19,7 +19,7 @@ if (string.IsNullOrWhiteSpace(sqlConnectionString))
 builder.Services.AddScoped<IDbConnection>(sp => new SqlConnection(sqlConnectionString));
 builder.Services.AddScoped<ISqlRepository, SqlRepository>();
 builder.Services.AddScoped<UserUpdateService>();
-
+//hi
 // Add Authorization & Identity
 builder.Services.AddAuthorization();
 builder.Services
