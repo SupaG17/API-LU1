@@ -27,7 +27,6 @@ builder.Services
     {
         options.User.RequireUniqueEmail = true;
         options.SignIn.RequireConfirmedPhoneNumber = false;
-
         options.Password.RequireDigit = false;
         options.Password.RequireLowercase = true;
         options.Password.RequireUppercase = true;
