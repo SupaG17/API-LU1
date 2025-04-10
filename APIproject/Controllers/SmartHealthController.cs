@@ -30,4 +30,3 @@ public class SmartHealthController : ControllerBase
         .ToArray();
     }
 }
-// test
