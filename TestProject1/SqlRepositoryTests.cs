@@ -5,24 +5,25 @@ using System.Threading.Tasks;
 using Dapper;
 using LU1_project.Models;
 using LU1_project.Repositories;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Xunit;
-using Assert = Xunit.Assert;
 
 namespace LU1_project.Tests
 {
+    [TestClass]
     public class SqlRepositoryTests
     {
-        private readonly Mock<IDbConnection> _mockDbConnection;
-        private readonly SqlRepository _sqlRepository;
+        private Mock<IDbConnection> _mockDbConnection;
+        private SqlRepository _sqlRepository;
 
-        public SqlRepositoryTests()
+        [TestInitialize]
+        public void Setup()
         {
             _mockDbConnection = new Mock<IDbConnection>();
             _sqlRepository = new SqlRepository(_mockDbConnection.Object);
         }
 
-        [Fact]
+        [TestMethod]
         public async Task InsertAsync_InsertsUserInfo_ReturnsUserInfo()
         {
             // Arrange
@@ -36,11 +37,11 @@ namespace LU1_project.Tests
             var result = await _sqlRepository.InsertAsync(userInfo);
 
             // Assert
-            Assert.Equal(userInfo, result);
+            Assert.AreEqual(userInfo, result);
             _mockDbConnection.Verify(db => db.ExecuteAsync(query, userInfo, null, null, null), Times.Once);
         }
 
-        [Fact]
+        [TestMethod]
         public async Task ReadAsync_WithId_ReturnsUserInfo()
         {
             // Arrange
@@ -54,11 +55,11 @@ namespace LU1_project.Tests
             var result = await _sqlRepository.ReadAsync(id);
 
             // Assert
-            Assert.Equal(userInfo, result);
+            Assert.AreEqual(userInfo, result);
             _mockDbConnection.Verify(db => db.QuerySingleOrDefaultAsync<UserInfo>(query, new { Id = id }, null, null, null), Times.Once);
         }
 
-        [Fact]
+        [TestMethod]
         public async Task ReadAllAsync_ReturnsAllUserInfos()
         {
             // Arrange
@@ -75,11 +76,11 @@ namespace LU1_project.Tests
             var result = await _sqlRepository.ReadAllAsync();
 
             // Assert
-            Assert.Equal(userInfos, result);
+            CollectionAssert.AreEqual(userInfos, new List<UserInfo>(result));
             _mockDbConnection.Verify(db => db.QueryAsync<UserInfo>(query, null, null, null, null), Times.Once);
         }
 
-        [Fact]
+        [TestMethod]
         public async Task UpdateAsync_UpdatesUserInfo()
         {
             // Arrange
@@ -97,7 +98,7 @@ namespace LU1_project.Tests
             _mockDbConnection.Verify(db => db.ExecuteAsync(query, userInfo, null, null, null), Times.Once);
         }
 
-        [Fact]
+        [TestMethod]
         public async Task DeleteAsync_DeletesUserInfo()
         {
             // Arrange

@@ -1,15 +1,13 @@
-﻿// UserInfoTests.cs
-using System;
+﻿using System;
 using LU1_project.Models;
-using Xunit;
-using Assert = Xunit.Assert;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LU1_project.Tests
 {
+    [TestClass]
     public class UserInfoTests
     {
-        [Fact]
+        [TestMethod]
         public void Constructor_InitializesPropertiesCorrectly()
         {
             // Arrange
@@ -22,11 +20,11 @@ namespace LU1_project.Tests
             var userInfo = new UserInfo(userName, passWord, currentLevel, avatar);
 
             // Assert
-            Assert.Equal(userName, userInfo.UserName);
-            Assert.Equal(passWord, userInfo.PassWord);
-            Assert.Equal(currentLevel, userInfo.CurrentLevel);
-            Assert.Equal(avatar, userInfo.Avatar);
-            Assert.NotEqual(Guid.Empty, userInfo.Id);
+            Assert.AreEqual(userName, userInfo.UserName);
+            Assert.AreEqual(passWord, userInfo.PassWord);
+            Assert.AreEqual(currentLevel, userInfo.CurrentLevel);
+            Assert.AreEqual(avatar, userInfo.Avatar);
+            Assert.AreNotEqual(Guid.Empty, userInfo.Id);
         }
     }
 }
